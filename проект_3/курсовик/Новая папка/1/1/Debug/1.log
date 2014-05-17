@@ -1,0 +1,43 @@
+﻿Построение начато 28.05.2013 17:11:07.
+     1>Проект "C:\Users\silvestor\Desktop\курсовик\Новая папка\1\1\1.vcxproj" в узле 2 (целевые объекты build).
+     1>InitializeBuildStatus:
+         Создание "Debug\1.unsuccessfulbuild", так как было задано "AlwaysCreate".
+       ClCompile:
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"StdAfx.h" /Fp"Debug\1.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt stdafx.cpp /clr:nostdlib 
+         stdafx.cpp
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\1.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt 1.cpp AssemblyInfo.cpp /clr:nostdlib 
+         1.cpp
+     1>1.cpp(840): warning C4800: int: принудительно задано логическое значение "true" или "false" (предупреждение о производительности)
+     1>1.cpp(927): warning C4553: ==: оператор не имеет результата; возможно, имелся в виду "="
+     1>1.cpp(928): warning C4553: ==: оператор не имеет результата; возможно, имелся в виду "="
+     1>1.cpp(1067): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+     1>1.cpp(1176): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+     1>1.cpp(1310): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+     1>1.cpp(1420): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+     1>1.cpp(1635): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+     1>1.cpp(1802): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+         AssemblyInfo.cpp
+         Создание кода...
+     1>c:\users\silvestor\desktop\курсовик\новая папка\1\1\1.cpp(2000): warning C4700: использована неинициализированная локальная переменная "IDa"
+     1>c:\users\silvestor\desktop\курсовик\новая папка\1\1\1.cpp(2000): warning C4700: использована неинициализированная локальная переменная "IDu"
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /analyze- /errorReport:prompt "C:\Users\silvestor\AppData\Local\Temp\.NETFramework,Version=v4.0.AssemblyAttributes.cpp"
+         .NETFramework,Version=v4.0.AssemblyAttributes.cpp
+       ResourceCompile:
+         C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /D _UNICODE /D UNICODE /l"0x0409" /nologo /fo"Debug\app.res" app.rc 
+       Link:
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\silvestor\Desktop\курсовик\Новая папка\1\Debug\1.exe" /INCREMENTAL /NOLOGO /MANIFEST /ManifestFile:"Debug\1.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\silvestor\Desktop\курсовик\Новая папка\1\Debug\1.pdb" /ASSEMBLYDEBUG /TLBID:1 /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 Debug\app.res
+         Debug\1.obj
+         Debug\AssemblyInfo.obj
+         Debug\stdafx.obj
+         "Debug\.NETFramework,Version=v4.0.AssemblyAttributes.obj"
+         1.vcxproj -> C:\Users\silvestor\Desktop\курсовик\Новая папка\1\Debug\1.exe
+       Manifest:
+         C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\silvestor\Desktop\курсовик\Новая папка\1\Debug\1.exe;#1" /manifest Debug\1.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Файл "Debug\1.unsuccessfulbuild" удаляется.
+         Обращение к "Debug\1.lastbuildstate".
+     1>Построение проекта "C:\Users\silvestor\Desktop\курсовик\Новая папка\1\1\1.vcxproj" завершено (целевые объекты build).
+
+Построение успешно завершено.
+
+Затраченное время: 00:00:06.71

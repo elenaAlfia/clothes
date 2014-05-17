@@ -1,0 +1,951 @@
+#include "iostream" 
+#include "conio.h"
+#include <time.h>
+#include <ctime>
+#include <iomanip>
+
+#include "exam.h"
+
+using namespace std;
+
+char *value;
+bool isExitFromCat = false;
+char *name;
+Date dateStart;
+Date dateEnd;
+listCat *newListCat;
+
+int ID;
+int IDCat;
+int IDTov;
+int cost;
+
+void addCharToEnd(char *&str, char z) {
+	int len = strlen(str);
+	char *newStr = new char[len + 1 + 1];
+	strcpy(newStr, str);
+	newStr[len] = z;
+	newStr[len + 1] = 0;
+	delete[] str;
+	str = newStr;
+} 
+
+void delCharToEnd(char *&str) {
+	int len = strlen(str);
+	char *newStr = new char[len];
+	memmove (newStr, str, len * sizeof(char));
+	newStr[len - 1] = 0;
+	delete[] str;
+	str = newStr;
+}
+
+void inputStr(char *&str) {
+	str = new char[1];
+	str[0] = 0;
+	do {
+		char c = _getch();
+		if ((c == '\n') || (c == '\r')) {
+			break;
+		}
+		if ((c == '\b') && (strlen(str) > 0)) {
+			printf("\b \b");
+			delCharToEnd(str);
+		} else {
+			printf("%c", c);
+			addCharToEnd(str, c);
+		}
+	} while (true);
+}
+
+
+void menu(List &st) {
+	st.inFileCat("pushcat.bin");
+	st.inFileTov("pushtov.bin");
+	st.inFileKompl("pushkom.bin");
+	st.inFileSvaz("pushsv.bin");
+	st.inFileProd("pushprod.bin");
+	do {
+		isExitFromCat = false;
+		cout << "Select the table:" << endl;
+		cout << "1. Category" << endl;
+		cout << "2. Tovar" << endl;
+		cout << "3. Kompl" << endl;
+		cout << "4. Svaz" << endl;
+		cout << "5. Prodaza" << endl;
+		cout << "6. Output report" << endl;
+		cout << "7. Return to selection magazins" << endl;
+
+		do {
+			inputStr(value);
+			cout << endl;
+			if ((myAtoi(value) >= 1) && (myAtoi(value) <= 7)) {
+				break;
+			}
+			cout << endl << "Try again: " << endl;
+		} while (true);
+		if (myAtoi(value) == 7){
+			system ("cls");
+		}
+		switch(myAtoi(value)) {
+		case 1:
+			cout << "You selected Category" << endl;
+
+			do {
+				isExitFromCat = false;
+				cout << "Select the action:" << endl;
+				cout << "1. Read from file" << endl;
+				cout << "2. Add element" << endl;
+				cout << "3. Change element" << endl;
+				cout << "4. Delete element" << endl;
+				cout << "5. Write to file " << endl;
+				cout << "6. Print screen " << endl;
+				cout << "7. Go back to main menu" << endl;
+
+				do {
+					inputStr(value);
+					cout << endl;
+					if ((myAtoi(value) >= 1) && (myAtoi(value) <= 7)) {
+						break;
+					}
+					cout << endl << "Try again: " << endl;
+				} while (true);
+				switch(myAtoi(value)) {
+				case 1:
+					cout << "You selected to read from file" << endl;
+					cout << "Input path to file" << endl;
+					inputStr(name);
+					cout << endl;
+					st.inFileCat(name);
+					cout << endl;
+					break;
+
+				case 2:
+					cout << "You selected to add element" << endl;
+					do {
+						srand(time(NULL));
+						ID = rand() % 100 + 1;
+						cout << endl;
+						if (!st.existIDCat(ID)){
+							break;}
+					}while(true);
+					cout << "Input Name" << endl;
+					inputStr(name);
+					cout << endl;
+					st.addCat(ID, name);
+					break;
+
+				case 3:
+					cout << "You selected to change element" << endl;
+					cout << "Input id" << endl;
+
+					do {
+						inputStr(value);
+						cout << endl;
+						if (!st.existIDCat(myAtoi(value))) {
+							cout << "Error of input id" << endl << "Try again: ";
+						} else {
+							break;
+						}
+					} while (true);
+
+					cout << "Input new name" << endl;
+					inputStr(name);
+					st.findByIDCat(myAtoi(value), name);
+					break;
+
+				case 4:
+					cout << "You selected to delete element" << endl;
+					cout << "Input id" << endl;
+					do {
+						inputStr(value);
+						cout << endl;
+						if (!st.existIDCat(myAtoi(value))) {
+							cout << "Error of input id" << endl << "Try again: ";
+						} else {
+							break;
+						}
+					} while (true);
+					st.delByValueCateg(myAtoi(value));
+					break;
+
+				case 5:
+					cout << "You selected to write from file" << endl;
+					cout << "Input path to file" << endl;
+					inputStr(name);
+					cout << endl;
+					st.outFileCat(name);
+					cout << endl;
+					break;
+
+				case 6:
+					st.printCat();
+					break;
+
+				case 7:
+					isExitFromCat = true;
+					break;
+				}
+			} while (!isExitFromCat);
+
+			isExitFromCat = false;
+			cout << "You back" << endl;
+			break;
+
+			case 2:
+			cout << "You selected Tovar" << endl;
+
+			do {
+				isExitFromCat = false;
+				cout << "Select the action:" << endl;
+				cout << "1. Read from file" << endl;
+				cout << "2. Add element" << endl;
+				cout << "3. Change element" << endl;
+				cout << "4. Delete element" << endl;
+				cout << "5. Write to file " << endl;
+				cout << "6. Print screen " << endl;
+				cout << "7. Go back to main menu" << endl;
+
+				do {
+					inputStr(value);
+					cout << endl;
+					if ((myAtoi(value) >= 1) && (myAtoi(value) <= 7)) {
+						break;
+					}
+					cout << endl << "Try again: " << endl;
+				} while (true);
+				switch(myAtoi(value)) {
+				case 1:
+					cout << "You selected to read from file" << endl;
+					cout << "Input path to file" << endl;
+					inputStr(name);
+					cout << endl;
+					st.inFileTov(name);
+					cout << endl;
+					break;
+					
+				case 2:
+					cout << "You selected to add element" << endl;
+					do {
+						srand(time(NULL));
+						ID = rand() % 100 + 1;
+						cout << endl;
+						if (!st.existIDTov(ID)){
+							break;}
+					}while(true);
+					cout << "Input Name" << endl;
+					inputStr(name);
+					cout << endl;
+					cout << "Input category" << endl;
+					do {
+						inputStr(value);
+						cout << endl;
+						if (!st.existIDCat(myAtoi(value))) {
+							cout << "Error of input category" << endl << "Try again: ";
+						} else {
+							break;
+						}
+					} while (true);
+					IDCat = myAtoi(value);
+					cout << "Select type" << endl;
+					cout << "1. Your device" << endl;
+					cout << "2. Foreign device" << endl;
+				do {
+					inputStr(value);
+					cout << endl;
+					if ((myAtoi(value) >= 1) && (myAtoi(value) <= 2)) {
+						break;
+					}
+					cout << endl << "Try again: " << endl;
+				} while (true);
+				bool type;
+				switch(myAtoi(value)) {
+					case 1:
+						type = false;
+						cost = st.findCostTov(ID);
+						break;
+					case 2:
+						type = true;
+						cout << "Input cost" << endl;
+					do {
+						inputStr(value);
+						cout << endl;
+						if (myAtoi(value) == 0) {
+							cout << "Error of input cost" << endl << "Try again: ";
+						} else {
+							break;
+						}
+					} while (true);
+					cost = myAtoi(value);
+						break;
+				}
+					st.addTov(ID, name, cost, IDCat, type);
+					break;
+					
+				case 3:
+					cout << "You selected to change element" << endl;
+					cout << "Input id" << endl;
+
+					do {
+						inputStr(value);
+						cout << endl;
+						if (!st.existIDTov(myAtoi(value))) {
+							cout << "Error of input id tovar" << endl << "Try again: ";
+						} else {
+							break;
+						}
+					} while (true);
+					ID = myAtoi(value);
+					cout << "Input new name" << endl;
+					inputStr(name);
+					cout << endl;
+					cout << "Input new category" << endl;
+					do {
+						inputStr(value);
+						cout << endl;
+						if (!st.existIDCat(myAtoi(value))) {
+							cout << "Error of input category" << endl << "Try again: ";
+						} else {
+							break;
+						}
+					} while (true);
+					IDCat = myAtoi(value);
+					cout << "Select new type" << endl;
+					cout << "1. Your device" << endl;
+					cout << "2. Foreign device" << endl;
+				do {
+					inputStr(value);
+					cout << endl;
+					if ((myAtoi(value) >= 1) && (myAtoi(value) <= 2)) {
+						break;
+					}
+					cout << endl << "Try again: " << endl;
+				} while (true);
+				switch(myAtoi(value)) {
+					case 1:
+						type = false;
+						cost = st.findCostTov(ID);
+						break;
+					case 2:
+						type = true;
+						cout << "Input new cost" << endl;
+					 do {
+						inputStr(value);
+						cout << endl;
+						if (myAtoi(value) == 0) {
+							cout << "Error of input cost" << endl << "Try again: ";
+						} else {
+							break;
+						}
+					} while (true);
+					cost = myAtoi(value);
+						break;
+				}
+					st.findByIDTov(ID, name, cost, IDCat, type);
+					break;
+
+				case 4:
+					cout << "You selected to delete element" << endl;
+					cout << "Input id" << endl;
+					do {
+						inputStr(value);
+						cout << endl;
+						if (!st.existIDTov(myAtoi(value))) {
+							cout << "Error of input id" << endl << "Try again: ";
+						} else {
+							break;
+						}
+					} while (true);
+					st.delByValueTov(myAtoi(value));
+					break;
+
+				case 5:
+					cout << "You selected to write from file" << endl;
+					cout << "Input path to file" << endl;
+					inputStr(name);
+					cout << endl;
+					st.outFileTov(name);
+					cout << endl;
+					break;
+
+				case 6:
+					st.printTov();
+					break;
+
+				case 7:
+					isExitFromCat = true;
+					break;
+				}
+			} while (!isExitFromCat);
+
+			isExitFromCat = false;
+			cout << "You back" << endl;
+			break;
+
+
+		case 3:
+			cout << "You selected Kompl" << endl;
+
+			do {
+				isExitFromCat = false;
+				cout << "Select the action:" << endl;
+				cout << "1. Read from file" << endl;
+				cout << "2. Add element" << endl;
+				cout << "3. Change element" << endl;
+				cout << "4. Delete element" << endl;
+				cout << "5. Write to file " << endl;
+				cout << "6. Print screen " << endl;
+				cout << "7. Go back to main menu" << endl;
+
+				do {
+					inputStr(value);
+					cout << endl;
+					if ((myAtoi(value) >= 1) && (myAtoi(value) <= 7)) {
+						break;
+					}
+					cout << endl << "Try again: " << endl;
+				} while (true);
+				switch(myAtoi(value)) {
+
+				case 1:
+					cout << "You selected to read from file" << endl;
+					cout << "Input path to file" << endl;
+					inputStr(name);
+					cout << endl;
+					st.inFileKompl(name);
+					cout << endl;
+					break;
+					
+				case 2:
+					cout << "You selected to add element" << endl;
+						do {
+						srand(time(NULL));
+						ID = rand() % 100 + 1;
+						cout << endl;
+						if (!st.existIDKompl(ID)){
+							break;}
+					}while(true);
+					cout << "Input Name" << endl;
+					inputStr(name);
+					cout << endl;
+					cout << "Input category" << endl;
+					do {
+						inputStr(value);
+						cout << endl;
+						if (!st.existIDCat(myAtoi(value))) {
+							cout << "Error of input category" << endl << "Try again: ";
+						} else {
+							break;
+						}
+					} while (true);
+					IDCat = myAtoi(value);
+					cout << "Input cost" << endl;
+					do {
+						inputStr(value);
+						cout << endl;
+						if (myAtoi(value) == 0) {
+							cout << "Error of input cost" << endl << "Try again: ";
+						} else {
+							break;
+						}
+					} while (true);
+					cost = myAtoi(value);
+					st.addKom(ID, name, cost, IDCat);
+					break;
+					
+				case 3:
+					cout << "You selected to change element" << endl;
+					cout << "Input id" << endl;
+
+					do {
+						inputStr(value);
+						cout << endl;
+						if (!st.existIDKompl(myAtoi(value))) {
+							cout << "Error of input id tovar" << endl << "Try again: ";
+						} else {
+							break;
+						}
+					} while (true);
+					 ID = myAtoi(value);
+					cout << "Input new name" << endl;
+					inputStr(name);
+					cout << endl << "Input new category" << endl;
+					do {
+						inputStr(value);
+						cout << endl;
+						if (!st.existIDCat(myAtoi(value))) {
+							cout << "Error of input category" << endl << "Try again: ";
+						} else {
+							break;
+						}
+					} while (true);
+					IDCat = myAtoi(value);
+					cout << "Input new cost" << endl;
+					 do {
+						inputStr(value);
+						cout << endl;
+						if (myAtoi(value) == 0) {
+							cout << "Error of input cost" << endl << "Try again: ";
+						} else {
+							break;
+						}
+					} while (true);
+					cost = myAtoi(value);
+					st.findByIDKom(ID, name, cost, IDCat);
+					break;
+
+				case 4:
+					cout << "You selected to delete element" << endl;
+					cout << "Input id" << endl;
+					do {
+						inputStr(value);
+						cout << endl;
+						if (!st.existIDKompl(myAtoi(value))) {
+							cout << "Error of input id" << endl << "Try again: ";
+						} else {
+							break;
+						}
+					} while (true);
+					st.delByValueKompl(myAtoi(value));
+					break;
+
+				case 5:
+					cout << "You selected to write from file" << endl;
+					cout << "Input path to file" << endl;
+					inputStr(name);
+					cout << endl;
+					st.outFileKompl(name);
+					cout << endl;
+					break;
+
+				case 6:
+					st.printKompl();
+					break;
+
+				case 7:
+					isExitFromCat = true;
+					break;
+				}
+			} while (!isExitFromCat);
+
+			isExitFromCat = false;
+			cout << "You back" << endl;
+			break;
+
+		case 4:
+			cout << "You selected Svaz" << endl;
+
+			do {
+				isExitFromCat = false;
+				cout << "Select the action:" << endl;
+				cout << "1. Read from file" << endl;
+				cout << "2. Add element" << endl;
+				cout << "3. Change element" << endl;
+				cout << "4. Delete element" << endl;
+				cout << "5. Write to file " << endl;
+				cout << "6. Print screen " << endl;
+				cout << "7. Go back to main menu" << endl;
+
+				do {
+					inputStr(value);
+					cout << endl;
+					if ((myAtoi(value) >= 1) && (myAtoi(value) <= 7)) {
+						break;
+					}
+					cout << endl << "Try again: " << endl;
+				} while (true);
+				switch(myAtoi(value)) {
+
+				case 1:
+					cout << "You selected to read from file" << endl;
+					cout << "Input path to file" << endl;
+					inputStr(name);
+					cout << endl;
+					st.inFileSvaz(name);
+					cout << endl;
+					break;
+					
+				case 2:
+					cout << "You selected to add element" << endl;
+					do {
+						srand(time(NULL));
+						ID = rand() % 100 + 1;
+						cout << endl;
+						if (!st.existIDSvaz(ID)){
+							break;}
+					}while(true);
+					cout << "Input tovar" << endl;
+					do {
+						inputStr(value);
+						cout << endl;
+						if ((!st.existIDTov(myAtoi(value))) && (st.typeTovar(myAtoi(value)))) {
+							cout << "Error of input tovar" << endl << "Try again: ";
+						} else {
+							break;
+						}
+					} while (true);
+					IDTov = myAtoi(value);
+					cout << "Input kompl" << endl;
+					do {
+						inputStr(value);
+						cout << endl;
+						if (!st.existIDKompl(myAtoi(value))) {
+							cout << "Error of input kompl" << endl << "Try again: ";
+						} else {
+							break;
+						}
+					} while (true);
+					IDCat = myAtoi(value);
+					cout << "Input kolvo" << endl;
+					do {
+						inputStr(value);
+						cout << endl;
+						if (myAtoi(value) == 0) {
+							cout << "Error of input kolvo" << endl << "Try again: ";
+						} else {
+							break;
+						}
+					} while (true);
+					cost = myAtoi(value);
+					st.addSvaz(ID, IDTov, IDCat, cost);
+					break;
+					
+				case 3:
+					cout << "You selected to change element" << endl;
+					cout << "Input id" << endl;
+
+					do {
+						inputStr(value);
+						cout << endl;
+						if (!st.existIDSvaz(myAtoi(value))) {
+							cout << "Error of input id svaz" << endl << "Try again: ";
+						} else {
+							break;
+						}
+					} while (true);
+					 ID = myAtoi(value);
+					cout << "Input new kolvo" << endl;
+					 do {
+						inputStr(value);
+						cout << endl;
+						if (myAtoi(value) == 0) {
+							cout << "Error of input kolvo" << endl << "Try again: ";
+						} else {
+							break;
+						}
+					} while (true);
+					cost = myAtoi(value);
+					st.findByIDSvaz(ID, cost);
+					break;
+
+				case 4:
+					cout << "You selected to delete element" << endl;
+					cout << "Input id" << endl;
+					do {
+						inputStr(value);
+						cout << endl;
+						if (!st.existIDSvaz(myAtoi(value))) {
+							cout << "Error of input id" << endl << "Try again: ";
+						} else {
+							break;
+						}
+					} while (true);
+					st.delByValueSvaz(myAtoi(value));
+					break;
+
+				case 5:
+					cout << "You selected to write from file" << endl;
+					cout << "Input path to file" << endl;
+					inputStr(name);
+					cout << endl;
+					st.outFileSvaz(name);
+					cout << endl;
+					break;
+
+				case 6:
+					st.printSvaz();
+					break;
+
+				case 7:
+					isExitFromCat = true;
+					break;
+				}
+			} while (!isExitFromCat);
+
+			isExitFromCat = false;
+			cout << "You back" << endl;
+			break;
+
+		case 5:
+			cout << "You selected Prodaza" << endl;
+
+			do {
+				isExitFromCat = false;
+				cout << "Select the action:" << endl;
+				cout << "1. Read from file" << endl;
+				cout << "2. Add element" << endl;
+				cout << "3. Change element" << endl;
+				cout << "4. Delete element" << endl;
+				cout << "5. Write to file " << endl;
+				cout << "6. Print screen " << endl;
+				cout << "7. Go back to main menu" << endl;
+
+				do {
+					inputStr(value);
+					cout << endl;
+					if ((myAtoi(value) >= 1) && (myAtoi(value) <= 7)) {
+						break;
+					}
+					cout << endl << "Try again: " << endl;
+				} while (true);
+				switch(myAtoi(value)) {
+
+				case 1:
+					cout << "You selected to read from file" << endl;
+					cout << "Input path to file" << endl;
+					inputStr(name);
+					cout << endl;
+					st.inFileProd(name);
+					cout << endl;
+					break;
+					
+				case 2:
+					cout << "You selected to add element" << endl;
+					do {
+						srand(time(NULL));
+						ID = rand() % 100 + 1;
+						cout << endl;
+						if (!st.existIDProd(ID)){
+							break;}
+					}while(true);
+					cout << "Input tovar" << endl;
+					do {
+						inputStr(value);
+						cout << endl;
+						if (!st.existIDTov(myAtoi(value))) {
+							cout << "Error of input tovar" << endl << "Try again: ";
+						} else {
+							break;
+						}
+					} while (true);
+					IDTov = myAtoi(value);
+					cout << "Input kolvo" << endl;
+					do {
+						inputStr(value);
+						cout << endl;
+						if (myAtoi(value) == 0) {
+							cout << "Error of input kolvo" << endl << "Try again: ";
+						} else {
+							break;
+						}
+					} while (true);
+					cost = myAtoi(value);
+					st.addProd(ID, IDTov, cost, inputDate());
+					break;
+
+					
+				case 3:
+					cout << "You selected to change element" << endl;
+					cout << "Input id" << endl;
+
+					do {
+						inputStr(value);
+						cout << endl;
+						if (!st.existIDSvaz(myAtoi(value))) {
+							cout << "Error of input id svaz" << endl << "Try again: ";
+						} else {
+							break;
+						}
+					} while (true);
+					 ID = myAtoi(value);
+					 cout << "Input new tovar" << endl;
+					do {
+						inputStr(value);
+						cout << endl;
+						if (!st.existIDTov(myAtoi(value))) {
+							cout << "Error of input tovar" << endl << "Try again: ";
+						} else {
+							break;
+						}
+					} while (true);
+					IDTov = myAtoi(value);
+					cout << "Input new kolvo" << endl;
+					 do {
+						inputStr(value);
+						cout << endl;
+						if (myAtoi(value) == 0) {
+							cout << "Error of input kolvo" << endl << "Try again: ";
+						} else {
+							break;
+						}
+					} while (true);
+					cost = myAtoi(value);
+					cout << "Input new date" << endl;
+					st.findByIDProd(ID, IDTov, cost, inputDate());
+					break;
+
+				case 4:
+					cout << "You selected to delete element" << endl;
+					cout << "Input id" << endl;
+					do {
+						inputStr(value);
+						cout << endl;
+						if (!st.existIDProd(myAtoi(value))) {
+							cout << "Error of input id" << endl << "Try again: ";
+						} else {
+							break;
+						}
+					} while (true);
+					st.delByValueProd(myAtoi(value));
+					break;
+
+				case 5:
+					cout << "You selected to write from file" << endl;
+					cout << "Input path to file" << endl;
+					inputStr(name);
+					cout << endl;
+					st.outFileProd(name);
+					cout << endl;
+					break;
+
+				case 6:
+					st.printProd();
+					break;
+
+				case 7:
+					isExitFromCat = true;
+					break;
+				}
+			} while (!isExitFromCat);
+
+			isExitFromCat = false;
+			cout << "You back" << endl;
+			break;
+
+
+		case 6:
+			cout << "You selected Output report" << endl;
+
+			do {
+				isExitFromCat = false;
+				cout << "Select report:" << endl;
+				cout << "1. Calculate summ for period" << endl;
+				cout << "2. Calculate summ for categories" << endl;
+				cout << "3. Calculate kolvo" << endl;
+				cout << "4. Calculate kolvo for categories" << endl;
+				cout << "5. Go back to main menu" << endl;
+
+				do {
+					inputStr(value);
+					cout << endl;
+					if ((myAtoi(value) >= 1) && (myAtoi(value) <= 5)) {
+						break;
+					}
+					cout << endl << "Try again: " << endl;
+				} while (true);
+				switch(myAtoi(value)) {
+				case 1:
+					cout << "You selected calculate summ for period" << endl;
+					cout << "Input start of date:" << endl;
+					dateStart = inputDate();
+					cout << "Input end of date:" << endl;
+					dateEnd = inputDate();
+					cout << "Your result: " << st.summProdPer(dateStart, dateEnd) << endl;
+					break;
+
+				case 2:
+					cout << "You selected calculate summ for categories" << endl;
+					cout << "Input start of date:" << endl;
+					dateStart = inputDate();
+					cout << "Input end of date:" << endl;
+					dateEnd = inputDate();
+					st.summProdCat(dateStart, dateEnd);
+					break;
+
+				case 3:
+					cout << "You selected calculate kolvo" << endl;
+					cout << "Input start of date:" << endl;
+					dateStart = inputDate();
+					cout << "Input end of date:" << endl;
+					dateEnd = inputDate();
+					cout << "Your result: " << st.countProdPer(dateStart, dateEnd) << endl;
+					break;
+
+				case 4:
+					cout << "You selected calculate kolvo for categories" << endl;
+					cout << "Input start of date:" << endl;
+					dateStart = inputDate();
+					cout << "Input end of date:" << endl;
+					dateEnd = inputDate();
+					st.countProdCat(dateStart, dateEnd);
+					break;
+
+				case 5:
+					isExitFromCat = true;
+					break;
+				}
+			} while (!isExitFromCat);
+
+			isExitFromCat = false;
+			cout << "You back" << endl;
+			break;
+
+
+		case 7:
+			isExitFromCat = true;
+			break;
+		}
+	} while (!isExitFromCat);
+}
+
+int main() {
+
+	cout << "Avtor - Firulina Maria, gruppa ISEbd-11"<< endl;
+	cout << "Uchot prodazh computernoy techniky"<< endl << endl;
+
+	List st[5];
+	bool flag = false;
+
+	do {
+		flag = false;
+		cout << "Select the magazin:" << endl;
+		cout << "1. Pushkinskaya, 12a" << endl;
+		cout << "2. Narimanova, 34" << endl;
+		cout << "3. Minaeva, 41" << endl;
+		cout << "4. Karla Marksa, 23" << endl;
+		cout << "5. Rozi Luksemburg, 16" << endl;
+		cout << "6. Exit" << endl;
+
+		do {
+			inputStr(value);
+			cout << endl;
+			if ((myAtoi(value) >= 1) && (myAtoi(value) <= 7)) {
+				break;
+			}
+			cout << endl << "Try again: " << endl;
+		} while (true);
+		system ("cls");
+		switch(myAtoi(value)) {
+		case 1:
+			menu(st[0]);
+			break;
+		case 2:
+			menu(st[1]);
+			break;
+		case 3:
+			menu(st[2]);
+			break;
+		case 4:
+			menu(st[3]);
+			break;
+		case 5:
+			menu(st[4]);
+			break;
+				
+		case 6:
+			flag = true;
+			break;
+				
+		}
+	} while (!flag);
+	return 0;
+}

@@ -1,0 +1,175 @@
+#ifndef EXAM_H
+#define EXAM_H
+
+struct Category
+{
+	int ID_category;
+	char* Name;
+	Category *next;
+};
+struct listCat
+{Category *head;
+};
+
+struct Tovar
+{
+	int ID_tovar;
+	char* Name;
+	bool Type;
+	int ID_category;
+	int Cost;
+	Tovar *next;
+};
+struct listTov
+{Tovar *head;
+};
+
+struct Kompl
+{
+	int ID_kompl;
+	char* Name;
+	int ID_category;
+	int Cost;
+	Kompl *next;
+};
+struct listKom
+{Kompl * head;
+};
+
+struct Svaz
+{
+	int ID_svaz;
+	int ID_tovar;
+	int ID_kompl;
+	int Kolvo;
+	Svaz *next;
+};
+struct listSvaz
+{
+	Svaz *head;
+};
+
+struct Date 		
+	{
+		unsigned day; 		
+		unsigned month;		
+		unsigned year;
+	};
+struct Prodaza
+{
+	int ID_prodaza;
+	int ID_tovar;
+	int Kolvo;
+	Date D_pradaza;
+	Prodaza * next;
+	};
+struct listProd
+{Prodaza * head;
+};
+
+class List {
+public:
+	listCat cat;
+	listTov  tov;
+	listKom  kom;
+	listSvaz  svaz;
+	listProd  prod;
+
+	List();
+
+	~List();
+
+	void addCat(int, char*);
+
+	void addTov(int, char*, int, int, bool);
+
+	void addKom(int, char*, int, int); 
+	
+	void addSvaz(int, int, int, int);
+
+	void addProd(int, int, int, Date);
+
+	bool existIDCat(int ID);
+
+	bool existIDTov(int ID);
+
+	bool existIDKompl(int ID);
+
+	bool existIDSvaz(int ID);
+
+	bool existIDProd(int ID);
+
+	bool typeTovar(int ID); 
+
+	void findByIDProd(int ID, int IDt, int kol, Date date);
+
+	void findByIDCat(int, char*);
+
+	void findByIDTov(int, char*, int,  int, bool);
+
+	void findByIDKom(int, char*, int,  int);
+
+	void findByIDSvaz(int, int);
+
+	void delByValueProd(int);
+
+	void delByValueCateg(int);
+
+	void delByValueTov(int);
+
+	void delByValueKompl(int);
+
+	void delByValueSvaz(int);
+
+	void printCat();
+
+	void printProd();
+
+	void printTov();
+
+	void printKompl();
+
+	void printSvaz();
+
+	void outFileCat(char *);
+
+	void outFileTov(char *);
+
+	void outFileKompl(char *);
+
+	void outFileSvaz(char *);
+
+	void outFileProd(char *);
+
+	void inFileProd(char * path);
+
+	void inFileCat(char * path);
+
+	void inFileTov(char * path);
+
+	void inFileKompl(char * path);
+
+	void inFileSvaz(char * path);
+
+	int findCostTov(int IDt);
+
+	int countProdPer(Date dateStart, Date dateEnd);
+
+	void summProdCat(Date dateStart, Date dateEnd);
+
+	int summProdPer(Date dateStart, Date dateEnd);
+
+	void summProdCat2(Date dateStart, Date dateEnd);
+
+	void countProdCat(Date dateStart, Date dateEnd);
+
+	bool isStartDate(Date dateStart, Date dateCheck);
+
+	bool isEndDate(Date dateStart, Date dateCheck);
+};
+
+Date inputDate();
+
+int myAtoi (char * str);
+
+#endif

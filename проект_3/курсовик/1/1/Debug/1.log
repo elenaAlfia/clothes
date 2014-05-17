@@ -1,0 +1,152 @@
+﻿Построение начато 13.05.2013 9:22:01.
+     1>Проект "C:\Documents and Settings\user\Рабочий стол\курсовик\1\1\1.vcxproj" в узле 2 (целевые объекты build).
+     1>InitializeBuildStatus:
+         Обращение к "Debug\1.unsuccessfulbuild".
+       ClCompile:
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"StdAfx.h" /Fp"Debug\1.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt stdafx.cpp /clr:nostdlib 
+         stdafx.cpp
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\1.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt 1.cpp AssemblyInfo.cpp /clr:nostdlib 
+         1.cpp
+     1>1.cpp(477): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files\Microsoft Visual Studio 10.0\VC\include\stdio.h(234): см. объявление "fopen"
+     1>1.cpp(502): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files\Microsoft Visual Studio 10.0\VC\include\stdio.h(234): см. объявление "fopen"
+     1>1.cpp(527): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files\Microsoft Visual Studio 10.0\VC\include\stdio.h(234): см. объявление "fopen"
+     1>1.cpp(552): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files\Microsoft Visual Studio 10.0\VC\include\stdio.h(234): см. объявление "fopen"
+     1>1.cpp(579): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files\Microsoft Visual Studio 10.0\VC\include\stdio.h(234): см. объявление "fopen"
+     1>1.cpp(610): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files\Microsoft Visual Studio 10.0\VC\include\stdio.h(234): см. объявление "fopen"
+     1>1.cpp(636): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files\Microsoft Visual Studio 10.0\VC\include\stdio.h(234): см. объявление "fopen"
+     1>1.cpp(659): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files\Microsoft Visual Studio 10.0\VC\include\stdio.h(234): см. объявление "fopen"
+     1>1.cpp(681): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files\Microsoft Visual Studio 10.0\VC\include\stdio.h(234): см. объявление "fopen"
+     1>1.cpp(703): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files\Microsoft Visual Studio 10.0\VC\include\stdio.h(234): см. объявление "fopen"
+     1>1.cpp(725): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files\Microsoft Visual Studio 10.0\VC\include\stdio.h(234): см. объявление "fopen"
+     1>1.cpp(748): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files\Microsoft Visual Studio 10.0\VC\include\stdio.h(234): см. объявление "fopen"
+     1>1.cpp(772): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files\Microsoft Visual Studio 10.0\VC\include\stdio.h(234): см. объявление "fopen"
+     1>1.cpp(795): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files\Microsoft Visual Studio 10.0\VC\include\stdio.h(234): см. объявление "fopen"
+     1>1.cpp(1379): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files\Microsoft Visual Studio 10.0\VC\include\string.h(105): см. объявление "strcpy"
+     1>1.cpp(1442): error C3861: inputStr: идентификатор не найден
+     1>1.cpp(1444): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1444): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1451): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1451): error C2050: значение выражения для варианта выбора не является целым
+     1>1.cpp(1469): error C3861: inputStr: идентификатор не найден
+     1>1.cpp(1471): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1471): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1478): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1478): error C2050: значение выражения для варианта выбора не является целым
+     1>1.cpp(1483): error C2065: name: необъявленный идентификатор
+     1>1.cpp(1483): error C3861: inputStr: идентификатор не найден
+     1>1.cpp(1484): error C2065: name: необъявленный идентификатор
+     1>1.cpp(1490): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+     1>1.cpp(1495): error C3861: inputStr: идентификатор не найден
+     1>1.cpp(1497): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1507): error C2065: Kolichestvo_Skladskih_Mest: необъявленный идентификатор
+     1>1.cpp(1507): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1509): error C2065: Nathvanie_Sklada: необъявленный идентификатор
+     1>1.cpp(1509): error C3861: inputStr: идентификатор не найден
+     1>1.cpp(1512): error C2065: Kolichestvo_Skladskih_Mest: необъявленный идентификатор
+     1>1.cpp(1512): error C2065: Nathvanie_Sklada: необъявленный идентификатор
+     1>1.cpp(1520): error C3861: inputStr: идентификатор не найден
+     1>1.cpp(1522): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1531): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1533): error C3861: inputStr: идентификатор не найден
+     1>1.cpp(1537): error C3861: inputStr: идентификатор не найден
+     1>1.cpp(1539): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1548): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1550): error C2664: List::findByIDSklad: невозможно преобразовать параметр 3 из "std::string" в "char *"
+                 Для выполнения данного преобразования нет доступного оператора преобразования, определенного пользователем, или вызов оператора невозможен
+     1>1.cpp(1556): error C3861: inputStr: идентификатор не найден
+     1>1.cpp(1558): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1568): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1573): error C2065: name: необъявленный идентификатор
+     1>1.cpp(1573): error C3861: inputStr: идентификатор не найден
+     1>1.cpp(1574): error C2065: name: необъявленный идентификатор
+     1>1.cpp(1603): error C3861: inputStr: идентификатор не найден
+     1>1.cpp(1605): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1605): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1612): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1612): error C2050: значение выражения для варианта выбора не является целым
+     1>1.cpp(1617): error C2065: name: необъявленный идентификатор
+     1>1.cpp(1617): error C3861: inputStr: идентификатор не найден
+     1>1.cpp(1618): error C2065: name: необъявленный идентификатор
+     1>1.cpp(1624): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+     1>1.cpp(1627): error C2065: Naimenovanie: необъявленный идентификатор
+     1>1.cpp(1627): error C3861: inputStr: идентификатор не найден
+     1>1.cpp(1632): error C3861: inputStr: идентификатор не найден
+     1>1.cpp(1634): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1642): error C2065: Cena_Komplektyushei: необъявленный идентификатор
+     1>1.cpp(1642): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1643): error C2065: Naimenovanie: необъявленный идентификатор
+     1>1.cpp(1643): error C2065: Cena_Komplektyushei: необъявленный идентификатор
+     1>1.cpp(1651): error C3861: inputStr: идентификатор не найден
+     1>1.cpp(1653): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1662): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1664): error C2065: naim: необъявленный идентификатор
+     1>1.cpp(1664): error C3861: inputStr: идентификатор не найден
+     1>1.cpp(1668): error C3861: inputStr: идентификатор не найден
+     1>1.cpp(1670): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1679): error C2065: CenaKomplektyusheia: необъявленный идентификатор
+     1>1.cpp(1679): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1681): error C2065: Naim: необъявленный идентификатор
+     1>1.cpp(1681): error C2065: CenaKomplektyusheia: необъявленный идентификатор
+     1>1.cpp(1687): error C3861: inputStr: идентификатор не найден
+     1>1.cpp(1689): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1699): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1704): error C2065: name: необъявленный идентификатор
+     1>1.cpp(1704): error C3861: inputStr: идентификатор не найден
+     1>1.cpp(1705): error C2065: name: необъявленный идентификатор
+     1>1.cpp(1735): error C3861: inputStr: идентификатор не найден
+     1>1.cpp(1737): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1737): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1744): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1744): error C2050: значение выражения для варианта выбора не является целым
+     1>1.cpp(1749): error C2065: name: необъявленный идентификатор
+     1>1.cpp(1749): error C3861: inputStr: идентификатор не найден
+     1>1.cpp(1750): error C2065: name: необъявленный идентификатор
+     1>1.cpp(1756): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+     1>1.cpp(1759): error C2065: FIO: необъявленный идентификатор
+     1>1.cpp(1759): error C3861: inputStr: идентификатор не найден
+     1>1.cpp(1764): error C3861: inputStr: идентификатор не найден
+     1>1.cpp(1766): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1776): error C2065: Zarplata: необъявленный идентификатор
+     1>1.cpp(1776): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1777): error C2065: FIO: необъявленный идентификатор
+     1>1.cpp(1777): error C2065: Zarplata: необъявленный идентификатор
+     1>1.cpp(1778): error C2143: синтаксическая ошибка: отсутствие ";" перед "break"
+     1>1.cpp(1785): error C3861: inputStr: идентификатор не найден
+     1>1.cpp(1787): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1796): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1798): error C2065: F_I_O: необъявленный идентификатор
+     1>1.cpp(1798): error C3861: inputStr: идентификатор не найден
+     1>1.cpp(1802): error C3861: inputStr: идентификатор не найден
+     1>1.cpp(1804): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1813): error C2065: Zarplat: необъявленный идентификатор
+     1>1.cpp(1813): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1815): error C2065: F_I_O: необъявленный идентификатор
+     1>1.cpp(1815): error C2065: Zarplat: необъявленный идентификатор
+     1>1.cpp(1821): error C3861: inputStr: идентификатор не найден
+     1>1.cpp(1823): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1833): error C3861: myAtoi: идентификатор не найден
+     1>1.cpp(1838): error C2065: name: необъявленный идентификатор
+     1>1.cpp(1838): error C3861: inputStr: идентификатор не найден
+     1>1.cpp(1838): fatal error C1003: число ошибок превышает 100; остановка компиляции
+         AssemblyInfo.cpp
+         Создание кода...
+     1>Построение проекта "C:\Documents and Settings\user\Рабочий стол\курсовик\1\1\1.vcxproj" завершено (целевые объекты build) с ошибкой.
+
+СБОЙ построения.
+
+Затраченное время: 00:00:03.79

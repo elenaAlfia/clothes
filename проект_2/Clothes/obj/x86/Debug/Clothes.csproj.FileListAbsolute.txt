@@ -1,0 +1,30 @@
+C:\Developments\fl-weblancer.net\591185 - Задание по курсовой работе (только код)\_solution\Clothes\bin\Debug\Clothes.exe.config
+C:\Developments\fl-weblancer.net\591185 - Задание по курсовой работе (только код)\_solution\Clothes\bin\Debug\clothes.sdf
+C:\Developments\fl-weblancer.net\591185 - Задание по курсовой работе (только код)\_solution\Clothes\bin\Debug\Clothes.exe
+C:\Developments\fl-weblancer.net\591185 - Задание по курсовой работе (только код)\_solution\Clothes\bin\Debug\Clothes.pdb
+C:\Developments\fl-weblancer.net\591185 - Задание по курсовой работе (только код)\_solution\Clothes\bin\Debug\NetOffice.dll
+C:\Developments\fl-weblancer.net\591185 - Задание по курсовой работе (только код)\_solution\Clothes\bin\Debug\OfficeApi.dll
+C:\Developments\fl-weblancer.net\591185 - Задание по курсовой работе (только код)\_solution\Clothes\bin\Debug\VBIDEApi.dll
+C:\Developments\fl-weblancer.net\591185 - Задание по курсовой работе (только код)\_solution\Clothes\bin\Debug\WordApi.dll
+C:\Developments\fl-weblancer.net\591185 - Задание по курсовой работе (только код)\_solution\Clothes\obj\x86\Debug\Clothes.csprojResolveAssemblyReference.cache
+C:\Developments\fl-weblancer.net\591185 - Задание по курсовой работе (только код)\_solution\Clothes\obj\x86\Debug\Clothes.frmMain.resources
+C:\Developments\fl-weblancer.net\591185 - Задание по курсовой работе (только код)\_solution\Clothes\obj\x86\Debug\Clothes.Properties.Resources.resources
+C:\Developments\fl-weblancer.net\591185 - Задание по курсовой работе (только код)\_solution\Clothes\obj\x86\Debug\Clothes.csproj.GenerateResource.Cache
+C:\Developments\fl-weblancer.net\591185 - Задание по курсовой работе (только код)\_solution\Clothes\obj\x86\Debug\Clothes.exe
+C:\Developments\fl-weblancer.net\591185 - Задание по курсовой работе (только код)\_solution\Clothes\obj\x86\Debug\Clothes.pdb
+C:\Developments\fl-weblancer.net\591185 - Задание по курсовой работе (только код)\_solution\Clothes\bin\Debug\ExcelApi.dll
+C:\Users\ПК\Desktop\clothes_ULTRAS_2\Clothes\bin\Debug\Clothes.exe.config
+C:\Users\ПК\Desktop\clothes_ULTRAS_2\Clothes\obj\x86\Debug\Clothes.exe
+C:\Users\ПК\Desktop\clothes_ULTRAS_2\Clothes\obj\x86\Debug\Clothes.pdb
+C:\Users\ПК\Desktop\clothes_ULTRAS_2\Clothes\bin\Debug\clothes.sdf
+C:\Users\ПК\Desktop\clothes_ULTRAS_2\Clothes\bin\Debug\Clothes.exe
+C:\Users\ПК\Desktop\clothes_ULTRAS_2\Clothes\bin\Debug\Clothes.pdb
+C:\Users\ПК\Desktop\clothes_ULTRAS_2\Clothes\bin\Debug\ExcelApi.dll
+C:\Users\ПК\Desktop\clothes_ULTRAS_2\Clothes\bin\Debug\NetOffice.dll
+C:\Users\ПК\Desktop\clothes_ULTRAS_2\Clothes\bin\Debug\OfficeApi.dll
+C:\Users\ПК\Desktop\clothes_ULTRAS_2\Clothes\bin\Debug\VBIDEApi.dll
+C:\Users\ПК\Desktop\clothes_ULTRAS_2\Clothes\bin\Debug\WordApi.dll
+C:\Users\ПК\Desktop\clothes_ULTRAS_2\Clothes\obj\x86\Debug\Clothes.csprojResolveAssemblyReference.cache
+C:\Users\ПК\Desktop\clothes_ULTRAS_2\Clothes\obj\x86\Debug\Clothes.frmMain.resources
+C:\Users\ПК\Desktop\clothes_ULTRAS_2\Clothes\obj\x86\Debug\Clothes.Properties.Resources.resources
+C:\Users\ПК\Desktop\clothes_ULTRAS_2\Clothes\obj\x86\Debug\Clothes.csproj.GenerateResource.Cache

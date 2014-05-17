@@ -1,0 +1,992 @@
+#include <iostream> 
+#include <conio.h>
+#include <time.h>
+#include <fstream>
+#include <iomanip>
+
+#include "exam.h"
+
+using namespace std;
+
+List::List() {
+	cat.head = NULL;
+	tov.head = NULL;
+	kom.head = NULL;
+	svaz.head = NULL;
+	prod.head = NULL;
+}
+
+List::~List() {
+	while (cat.head != NULL) {
+		Category *temp = cat.head;
+		cat.head = cat.head->next;
+		delete temp;}
+	while (tov.head != NULL) {
+		Tovar *temp = tov.head;
+		tov.head = tov.head->next;
+		delete temp;}
+	while (kom.head != NULL) {
+		Kompl *temp = kom.head;
+		kom.head = kom.head->next;
+		delete temp;}
+	while (svaz.head != NULL) {
+		Svaz *temp = svaz.head;
+		svaz.head = svaz.head->next;
+		delete temp;}
+	while (prod.head != NULL) {
+		Prodaza *temp = prod.head;
+		prod.head = prod.head->next;
+		delete temp;}
+}
+
+void List::addCat(int ID, char * Name) {
+	for (Category *temp = cat.head; temp != NULL; temp = temp->next) { 
+		if (temp->ID_category == ID) {
+			cout << "Categ: ID = " << ID << " already exist" << endl;
+			return;
+		}
+	}
+
+	Category *temp = new Category;
+	temp->ID_category = ID;
+	temp->Name = Name;
+	temp->next = cat.head;
+	cat.head = temp;
+}
+
+void List::addTov(int IDt, char *Name, int Cost, int Categ, bool Type) {
+	for (Tovar *temp = tov.head; temp != NULL; temp = temp->next) { 
+		if (temp->ID_tovar == IDt) {
+			cout << "Tovar: ID = " << IDt << " already exist" << endl;
+			return;
+		}
+	}
+	for (Category *tmp = cat.head; tmp != NULL; tmp = tmp->next) {
+		if (tmp->ID_category == Categ) {
+			Tovar *temp = new Tovar;
+			temp->ID_tovar = IDt;
+			temp->Name = Name;
+			temp->Cost = Cost;
+			temp->ID_category = Categ;
+			temp->Type = Type;
+			temp->next = tov.head;
+			tov.head = temp;
+
+			return;
+		}
+	}
+	cout << "This ID Tovar not exist" << endl;
+}
+
+void List::addKom(int IDk, char *Name, int Cost, int Categ) {
+	for (Kompl *temp = kom.head; temp != NULL; temp = temp->next) {
+		if (temp->ID_kompl == IDk) {
+			cout << "Kompl: ID = " << IDk << " already exist" << endl;
+			return;
+		}
+	}
+	for (Category *tmp = cat.head; tmp != NULL; tmp = tmp->next) {
+		if (tmp->ID_category == Categ) {
+			Kompl *temp = new Kompl;
+			temp->ID_kompl = IDk;
+			temp->Name = Name;
+			temp->Cost = Cost;
+			temp->ID_category = Categ;
+			temp->next = kom.head;
+			kom.head = temp;
+
+			return;
+		}
+	}
+	cout << "This ID Category not exist" << endl;
+}
+
+void List::addSvaz(int ID, int IDt, int IDk, int kol) {
+	for (Svaz *temp = svaz.head; temp != NULL; temp = temp->next) { 
+		if (temp->ID_svaz == ID) {
+			cout << "Svaz: ID = " << IDk << " already exist" << endl;
+			return;
+		}
+	}
+	bool flagTov = true;
+	bool flagKom = true;
+	for (Tovar *tmp = tov.head; tmp != NULL; tmp = tmp->next) {
+		if (tmp->ID_tovar == IDt){
+			flagTov = true;
+		}
+	}
+		for (Kompl *tmp2 = kom.head; tmp2 != NULL; tmp2 = tmp2->next) {
+			if (tmp2->ID_kompl == IDk){
+				flagKom = true;
+			}
+		}
+		for (Tovar *tmp = tov.head; tmp != NULL; tmp = tmp->next) {
+			if ((tmp->Type == false) && (flagTov) && (flagKom)) {
+				Svaz *temp = new Svaz;
+				temp->ID_svaz = ID;
+				temp->ID_tovar = IDt;
+				temp->ID_kompl = IDk;
+				temp->Kolvo = kol;
+				temp->next = svaz.head;
+				svaz.head = temp;
+
+				return;
+			}
+		}
+	cout << "This Kompl and Tovar not exist or wrong Type" << endl;
+}
+
+void List::addProd(int ID, int IDt, int kol, Date date) {
+	for (Prodaza *temp = prod.head; temp != NULL; temp = temp->next) { 
+		if (temp->ID_prodaza == ID) {
+			cout << "Prod: ID = " << ID << " already exist" << endl;
+			return;
+		}
+	} 
+	for (Tovar *tmp = tov.head; tmp != NULL; tmp = tmp->next) {
+		if (tmp->ID_tovar == IDt) {
+			Prodaza *temp = new Prodaza;
+			temp->ID_prodaza = ID;
+			temp->ID_tovar = IDt;
+			temp->Kolvo = kol;
+			temp->D_pradaza.day = date.day;
+			temp->D_pradaza.month = date.month;
+			temp->D_pradaza.year = date.year;
+			temp->next = prod.head;
+			prod.head = temp;
+
+			return;
+		}
+	}
+	cout << "This ID Tovar not exist" << endl;
+}
+
+int myAtoi (char * str) {
+	int length = 0;
+	while (str[length] != '\0') {
+		if (!isdigit(str[length])) {
+			return 0;
+		}
+		length++;
+	}
+	return atoi(str);
+}
+
+Date inputDate() {
+	Date date;
+
+	cout << "Input day: ";
+	char temp[40];
+	do {
+		cin.getline(temp, 40);
+		if ((myAtoi(temp) <= 0) || (myAtoi(temp) > 31)) {
+			cout << "Error of input day" << endl << "Try again: ";
+		} else {
+			break;
+		}
+	} while (true);
+	date.day = myAtoi(temp);
+
+	cout << "Input month: ";
+	char temp2[40];
+	do {
+		cin.getline(temp2, 40);
+		if ((myAtoi(temp2) <= 0) || (myAtoi(temp2) > 12)) {
+			cout << "Error of input month" << endl << "Try again: ";
+		} else {
+			break;
+		}
+	} while (true);
+	date.month = myAtoi(temp2);
+
+	cout << "Input year: ";
+	char temp3[80];
+	do {
+		cin.getline(temp3, 80);
+		if ((myAtoi(temp3) <= 0) || (myAtoi(temp3) < 1994) || (myAtoi(temp3) > 2013)) {
+			cout << "Error of input year" << endl << "Try again: ";
+		} else {
+			break;
+		}
+	} while (true);
+	date.year = myAtoi(temp3);
+
+	return date;
+}
+
+void List::findByIDProd(int ID, int IDt, int kol, Date date) {
+	for (Prodaza *temp = prod.head; temp != NULL; temp = temp->next) {
+		if (temp->ID_prodaza == ID) {
+			temp->ID_tovar = IDt;
+			temp->Kolvo = kol;
+			temp->D_pradaza.day = date.day;
+			temp->D_pradaza.month = date.month;
+			temp->D_pradaza.year = date.year;
+		}
+	}
+}
+
+void List::findByIDCat(int ID, char* Name) {
+	for (Category *temp = cat.head; temp != NULL; temp = temp->next) {
+		if (temp->ID_category == ID) {
+			temp->Name = Name;
+			cout << "Success of change" << endl; 
+			return;
+		}
+	}
+	cout << "Error of change" << endl; 
+}
+
+void List::findByIDTov(int IDt, char* Name, int Cost,  int ID, bool Type) {
+	for (Tovar *temp = tov.head; temp != NULL; temp = temp->next) {
+		if (temp->ID_tovar == IDt) {
+			temp->Name = Name;
+			temp->Cost = Cost;
+			temp->ID_category = ID;
+			temp->Type = Type;
+		}
+	}
+}
+
+void List::findByIDKom(int IDk, char* Name, int Cost,  int ID) {
+	for (Kompl *temp = kom.head; temp != NULL; temp = temp->next) {
+		if (temp->ID_kompl == IDk) {
+			temp->Name = Name;
+			temp->Cost = Cost;
+			temp->ID_category = ID;
+		}
+	}
+}
+
+void List::findByIDSvaz(int ID, int Kol) {
+	for (Svaz *temp = svaz.head; temp != NULL; temp = temp->next) {
+		if (temp->ID_svaz == ID) {
+			temp->Kolvo = Kol;
+		}
+	}
+}
+
+bool List::existIDCat(int ID) {
+    for (Category *temp = cat.head; temp != NULL; temp = temp->next) {
+		if (temp->ID_category == ID) {
+			return true;
+		}
+    }
+    return false;
+}
+
+bool List::existIDTov(int ID) {
+    for (Tovar *temp = tov.head; temp != NULL; temp = temp->next) {
+		if (temp->ID_tovar == ID) {
+			return true;
+		}
+    }
+    return false;
+}
+
+bool List::existIDKompl(int ID) {
+    for (Kompl *temp = kom.head; temp != NULL; temp = temp->next) {
+		if (temp->ID_kompl == ID) {
+			return true;
+		}
+    }
+    return false;
+}
+
+bool List::existIDSvaz(int ID) {
+    for (Svaz *temp = svaz.head; temp != NULL; temp = temp->next) {
+		if (temp->ID_svaz == ID) {
+			return true;
+		}
+    }
+    return false;
+}
+
+bool List::existIDProd(int ID) {
+    for (Prodaza *temp = prod.head; temp != NULL; temp = temp->next) {
+		if (temp->ID_prodaza == ID) {
+			return true;
+		}
+    }
+    return false;
+}
+
+bool List::typeTovar(int ID) {
+    for (Tovar *temp = tov.head; temp != NULL; temp = temp->next) {
+		if (temp->ID_tovar == ID){
+			if (temp->Type == false) {
+				return true;
+			}
+		}
+    }
+    return false;
+}
+
+void List::delByValueProd(int ID) {
+	while (prod.head != NULL) {
+		if (prod.head->ID_prodaza == ID) {
+			Prodaza *temp = prod.head;
+			prod.head = prod.head->next;
+			delete temp;
+		} else {
+			break;
+		}
+	}
+	if (prod.head == NULL) {
+		return;
+	}
+	Prodaza *prevNode = prod.head;
+	while (prevNode->next != NULL) {
+		if (prevNode->next->ID_prodaza == ID) {
+			Prodaza *temp = prevNode->next;
+			prevNode->next = prevNode->next->next;
+			delete temp;
+		} else {
+			prevNode = prevNode->next;
+		}
+	}
+
+}
+
+void List::delByValueCateg(int ID) {
+	while (cat.head != NULL) {
+		if (cat.head->ID_category == ID) {
+			for (Kompl *temp = kom.head; temp != NULL; temp = temp->next) {
+				if (temp->ID_category == ID) {
+					temp->ID_category = 0;
+				}
+			}
+			for (Tovar *temp = tov.head; temp != NULL; temp = temp->next) {
+				if (temp->ID_category == ID) {
+					temp->ID_category = 0;
+				}
+			}
+			Category *temp = cat.head;
+			cat.head = cat.head->next;
+			delete temp;
+		} else {
+			break;
+		}
+	}
+	if (cat.head == NULL) {
+		return;
+	}
+	Category *prevNode = cat.head;
+	while (prevNode->next != NULL) {
+		if (prevNode->next->ID_category == ID) {
+			for (Kompl *temp = kom.head; temp != NULL; temp = temp->next) {
+				if (temp->ID_category == ID) {
+					temp->ID_category = 0;
+				}
+			}
+			for (Tovar *temp = tov.head; temp != NULL; temp = temp->next) {
+				if (temp->ID_category == ID) {
+					temp->ID_category = 0;
+				}
+			}
+			Category *temp = prevNode->next;
+			prevNode->next = prevNode->next->next;
+			delete temp;
+		} else {
+			prevNode = prevNode->next;
+		}
+	}
+}
+
+void List::delByValueTov(int ID) {
+	while (tov.head != NULL) {
+		if (tov.head->ID_tovar == ID) {
+			for (Prodaza *temp = prod.head; temp != NULL; temp = temp->next) {
+				if (temp->ID_tovar == ID) {
+					delByValueProd(ID);
+				}
+			}
+			for (Svaz *temp = svaz.head; temp != NULL; temp = temp->next) {
+				if (temp->ID_tovar == ID) {
+					delByValueSvaz(ID);
+				}
+			}
+			Tovar *temp = tov.head;
+			tov.head = tov.head->next;
+			delete temp;
+		} else {
+			break;
+		}
+	}
+	if (tov.head == NULL) {
+		return;
+	}
+	Tovar *prevNode = tov.head;
+	while (prevNode->next != NULL) {
+		if (prevNode->next->ID_tovar == ID) {
+			for (Prodaza *temp = prod.head; temp != NULL; temp = temp->next) {
+				if (temp->ID_tovar == ID) {
+					delByValueProd(ID);
+				}
+			}
+			for (Svaz *temp = svaz.head; temp != NULL; temp = temp->next) {
+				if (temp->ID_tovar == ID) {
+					delByValueSvaz(ID);
+				}
+			}
+			Tovar *temp = prevNode->next;
+			prevNode->next = prevNode->next->next;
+			delete temp;
+		} else {
+			prevNode = prevNode->next;
+		}
+	}
+}
+
+void List::delByValueKompl(int ID) {
+	while (kom.head != NULL) {
+		if (kom.head->ID_kompl == ID) {
+			for (Svaz *temp = svaz.head; temp != NULL; temp = temp->next) {
+				if (temp->ID_tovar == ID) {
+					delByValueSvaz(ID);
+				}
+			}
+			Kompl *temp = kom.head;
+			kom.head = kom.head->next;
+			delete temp;
+		} else {
+			break;
+		}
+	}
+	if (kom.head == NULL) {
+		return;
+	}
+	Kompl *prevNode = kom.head;
+	while (prevNode->next != NULL) {
+		if (prevNode->next->ID_kompl == ID) {
+			for (Svaz *temp = svaz.head; temp != NULL; temp = temp->next) {
+				if (temp->ID_tovar == ID) {
+					delByValueSvaz(ID);
+				}
+			}
+			Kompl *temp = prevNode->next;
+			prevNode->next = prevNode->next->next;
+			delete temp;
+		} else {
+			prevNode = prevNode->next;
+		}
+	}
+}
+
+void List::delByValueSvaz(int ID) {
+	while (svaz.head != NULL) {
+		if (svaz.head-> ID_svaz== ID) {
+			Svaz *temp = svaz.head;
+			svaz.head = svaz.head->next;
+			delete temp;
+		} else {
+			break;
+		}
+	}
+	if (svaz.head == NULL) {
+		return;
+	}
+	Svaz *prevNode = svaz.head;
+	while (prevNode->next != NULL) {
+		if (prevNode->next->ID_svaz == ID) {
+			Svaz *temp = prevNode->next;
+			prevNode->next = prevNode->next->next;
+			delete temp;
+		} else {
+			prevNode = prevNode->next;
+		}
+	}
+}
+
+void List::printCat() {
+	cout << "Print Cat:" << endl << endl;
+	cout << "-----------------------------------------------------------------------" << endl;
+	cout.setf(ios::left, ios::adjustfield);
+	cout << setw(4) << " ID" << setw(30) << "| Name" << endl;
+	cout << "-----------------------------------------------------------------------" << endl;
+	for (Category *temp = cat.head; temp != NULL; temp = temp->next) {
+		cout << " " << setw(3) << temp->ID_category << "| " << setw(30) << temp->Name << endl;
+	}
+	cout << "-----------------------------------------------------------------------" << endl;
+}
+
+void List::printProd() {
+	cout << "Print Prodaza:" << endl << endl;
+	cout << "-----------------------------------------------------------------------" << endl;
+	cout.setf(ios::left, ios::adjustfield);
+	cout << setw(4) << " ID" << setw(7) << "| Tovar" << setw(7) << "| Kolvo" << setw(10) << "| Data"<< endl;
+	cout << "-----------------------------------------------------------------------" << endl;
+	for (Prodaza *temp = prod.head; temp != NULL; temp = temp->next) {
+		cout << " " << setw(3) << temp->ID_prodaza << "| " << setw(5) << temp->ID_tovar << "| " << setw(5) << temp->Kolvo
+			<< "| "  << temp->D_pradaza.day << " / " << temp->D_pradaza.month << " / " << temp->D_pradaza.year <<endl;
+	}
+	cout << "-----------------------------------------------------------------------" << endl;
+}
+
+void List::printTov() {
+	cout << "Print Tovar:" << endl << endl;
+	cout << "-----------------------------------------------------------------------" << endl;
+	cout.setf(ios::left, ios::adjustfield);
+	cout << setw(4) << " ID" << setw(40) << "| Name" << setw(10) << "| Cost" << setw(10) << "| ID Cat" << setw(7) << "| Type" << endl;
+	cout << "-----------------------------------------------------------------------" << endl;
+	for (Tovar *temp = tov.head; temp != NULL; temp = temp->next) {
+		//cout << " " << setw(3) << temp->ID_tovar << "| " << setw(30) << temp->Name << endl;
+		cout << " " << setw(3) << temp->ID_tovar << "| " << setw(38) << temp->Name << "| " << setw(8) << temp->Cost
+			<< "| " << setw(8) << temp->ID_category << "| " << setw(7) << temp->Type << endl;
+	}
+	cout << "-----------------------------------------------------------------------" << endl;
+}
+
+void List::printKompl() {
+	cout << "Print Kompl:" << endl << endl;
+	cout << "-----------------------------------------------------------------------" << endl;
+	cout.setf(ios::left, ios::adjustfield);
+	cout << setw(4) << " ID" << setw(40) << "| Name" << setw(10) << "| Category" << setw(10) << "| Cost"  << endl;
+	cout << "-----------------------------------------------------------------------" << endl;
+	for (Kompl *temp = kom.head; temp != NULL; temp = temp->next) {
+		cout << " " << setw(3) << temp->ID_kompl << "| " << setw(38) << temp->Name << "| " << 
+			setw(8) << temp->ID_category<< "| " << setw(8) << temp->Cost << endl;
+	}
+	cout << "-----------------------------------------------------------------------" << endl;
+}
+
+void List::printSvaz() {
+	cout << "Print Svaz:" << endl << endl;
+	cout << "-----------------------------------------------------------------------" << endl;
+	cout.setf(ios::left, ios::adjustfield);
+	cout << setw(4) << " ID" << setw(8) << "| ID Tov" << setw(11) << "| ID Kompl" << setw(10) << "| Kolvo"  << endl;
+	cout << "-----------------------------------------------------------------------" << endl;
+	for (Svaz *temp = svaz.head; temp != NULL; temp = temp->next) {
+		cout << " " << setw(3) << temp->ID_kompl << "| " << setw(6) << temp->ID_tovar << "| " << 
+			setw(9) << temp->ID_kompl<< "| " << setw(8) << temp->Kolvo << endl;
+	}
+	cout << "-----------------------------------------------------------------------" << endl;
+}
+
+void List::outFileCat(char * path) {
+	FILE *out;
+	if ((out = fopen(path,"wb")) == NULL) {
+		cout << "File " << path << "can not open!" << endl;
+		return;
+	}
+	struct CategoryTemp {
+		int ID_category;
+		char Name[80];
+	};
+	for (Category *temp = cat.head; temp != NULL; temp = temp->next) {
+		CategoryTemp head;
+		head.ID_category = temp->ID_category;
+		strcpy(head.Name, temp->Name);
+		fwrite(&head, sizeof(head), 1, out);
+	}
+	fclose(out);
+}
+
+void List::outFileTov(char * path) {
+	FILE *out;
+	if ((out = fopen(path,"wb")) == NULL) {
+		cout << "File " << path << "can not open!" << endl;
+		return;
+	}
+	struct TovarTemp {
+		int ID_Tovar;
+		char Name[80];
+		int Cost;
+		int ID_Category;
+		bool Type;
+	};
+	for (Tovar *temp = tov.head; temp != NULL; temp = temp->next) {
+		TovarTemp head;
+		head.ID_Tovar = temp->ID_tovar;
+		strcpy(head.Name, temp->Name);
+		head.Cost = temp->Cost;
+		head.ID_Category = temp->ID_category;
+		head.Type = temp->Type;
+		fwrite(&head, sizeof(head), 1, out);
+	}
+	fclose(out);
+}
+
+void List::outFileKompl(char * path) {
+	FILE *out;
+	if ((out = fopen(path,"wb")) == NULL) {
+		cout << "File " << path << "can not open!" << endl;
+		return;
+	}
+	struct KomplTemp {
+		int ID_Kompl;
+		char Name[80];
+		int ID_Category;
+		int Cost;
+	};
+	for (Kompl *temp = kom.head; temp != NULL; temp = temp->next) {
+		KomplTemp head;
+		head.ID_Kompl = temp->ID_kompl;
+		strcpy(head.Name, temp->Name);
+		head.Cost = temp->Cost;
+		head.ID_Category = temp->ID_category;
+		fwrite(&head, sizeof(head), 1, out);
+	}
+	fclose(out);
+}
+
+void List::outFileSvaz(char * path) {
+	FILE *out;
+	if ((out = fopen(path,"wb")) == NULL) {
+		cout << "File " << path << "can not open!" << endl;
+		return;
+	}
+	struct SvazTemp {
+		int ID_Svaz;
+		int ID_Tovar;
+		int ID_Kompl;
+		int Kolvo;
+	};
+	for (Svaz *temp = svaz.head; temp != NULL; temp = temp->next) {
+		SvazTemp head;
+		head.ID_Svaz = temp->ID_svaz;
+		head.ID_Tovar = temp->ID_tovar;
+		head.ID_Kompl = temp->ID_kompl;
+		head.Kolvo = temp->Kolvo;
+		fwrite(&head, sizeof(head), 1, out);
+	}
+	fclose(out);
+}
+
+void List::outFileProd(char * path) {
+	FILE *out;
+	if ((out = fopen(path,"wb")) == NULL) {
+		cout << "File " << path << "can not open!" << endl;
+		return;
+	}
+	struct ProdTemp {
+		int ID_Prod;
+		int ID_Tovar;
+		int Kolvo;
+		Date Date;
+	};
+	for (Prodaza *temp = prod.head; temp != NULL; temp = temp->next) {
+		ProdTemp head;
+		head.ID_Prod = temp->ID_prodaza;
+		head.ID_Tovar = temp->ID_tovar;
+		head.Kolvo = temp->Kolvo;
+		head.Date.day = temp->D_pradaza.day;
+		head.Date.month = temp->D_pradaza.month;
+		head.Date.year = temp->D_pradaza.year;
+		fwrite(&head, sizeof(head), 1, out);
+	}
+	fclose(out);
+}
+
+void List::inFileProd(char * path) {
+	FILE *in;
+	if ((in = fopen(path,"rb")) == NULL) {
+		cout << "File " << path << "can not open!" << endl;
+		return;
+	}
+	struct ProdazaTemp {
+		int ID_Prodaza;
+		int ID_Tovar;
+		int Kolvo;
+		Date Date;
+	};
+	ProdazaTemp head;
+	while (fread(&head, sizeof(head), 1, in)) {
+		addProd(head.ID_Prodaza, head.ID_Tovar, head.Kolvo, head.Date);
+	}
+	fclose(in);
+	printProd();
+}
+
+void List::inFileCat(char * path) {
+	FILE *in;
+	if ((in = fopen(path,"rb")) == NULL) {
+		cout << "File " << path << "can not open!" << endl;
+		return;
+	}
+	struct CategoryTemp {
+		int ID_category;
+		char Name[80];
+	};
+	CategoryTemp head;
+	while (fread(&head, sizeof(head), 1, in)) {
+		char * tempStr = new char[];
+		strcpy(tempStr, head.Name);
+		addCat(head.ID_category, tempStr);
+	}
+	fclose(in);
+	printCat();
+}
+
+void List::inFileTov(char * path) {
+	FILE *in;
+	if ((in = fopen(path,"rb")) == NULL) {
+		cout << "File " << path << "can not open!" << endl;
+		return;
+
+	}
+	struct TovarTemp {
+		int ID_Tovar;
+		char Name[80];
+		int Cost;
+		int ID_Category;
+		bool Type;
+	};
+	TovarTemp head;
+	while (fread(&head, sizeof(head), 1, in)) {
+		char * tempStr = new char[];
+		strcpy(tempStr, head.Name);
+		addTov(head.ID_Tovar, tempStr, head.Cost, head.ID_Category, head.Type);
+	}
+	fclose(in);
+	printTov();
+}
+
+void List::inFileKompl(char * path) {
+	FILE *in;
+	if ((in = fopen(path,"rb")) == NULL) {
+		cout << "File " << path << "can not open!" << endl;
+		return;
+		}
+	struct KomplTemp {
+		int ID_Komp;
+		char Name[80];
+		int ID_Category;
+		int Cost;
+	};
+	KomplTemp head;
+	while (fread(&head, sizeof(head), 1, in)) {
+		char * tempStr = new char[];
+		strcpy(tempStr, head.Name);
+		addKom(head.ID_Komp, tempStr, head.Cost, head.ID_Category);
+	}
+	fclose(in);
+	printKompl();
+}
+
+void List::inFileSvaz(char * path) {
+	FILE *in;
+	if ((in = fopen(path,"rb")) == NULL) {
+		cout << "File " << path << "can not open!" << endl;
+		return;
+	}
+	struct SvazTemp {
+		int ID_Svaz;
+		int ID_Tovar;
+		int ID_Komp;
+		int Kolvo;
+	};
+	SvazTemp head;
+	while (fread(&head, sizeof(head), 1, in)) {
+		addSvaz(head.ID_Svaz, head.ID_Tovar, head.ID_Komp, head.Kolvo);
+	}
+	fclose(in);
+	printSvaz();
+}
+
+// больше ли введенная дата чем старт
+bool List::isStartDate(Date dateStart, Date dateCheck) {
+	if (dateStart.year < dateCheck.year) {
+		return true;
+	} else {
+		if (dateCheck.year == dateStart.year) {
+			if (dateStart.month < dateCheck.month) {
+				return true;
+			}else{
+				if (dateStart.month == dateCheck.month) {
+					if (dateStart.day < dateCheck.day) {
+						return true;
+					} else {
+						if (dateStart.day == dateCheck.day) {
+							return true;
+						}
+						return false;
+					}
+				}
+
+				return false;
+			}
+		}
+
+		return false;
+	}
+}
+
+// меньше ли введенная дата чем end
+bool List::isEndDate(Date dateEnd, Date dateCheck) {
+	if (dateEnd.year > dateCheck.year) {
+		return true;
+	} else {
+		if (dateCheck.year == dateEnd.year) {
+			if (dateEnd.month > dateCheck.month) {
+				return true;
+			}else{
+				if (dateEnd.month == dateCheck.month) {
+					if (dateEnd.day > dateCheck.day) {
+						return true;
+					} else {
+						if (dateEnd.day == dateCheck.day) {
+							return true;
+						}
+						return false;
+					}
+				}
+
+				return false;
+			}
+		}
+
+		return false;
+	}
+}
+
+int List::summProdPer(Date dateStart, Date dateEnd) {
+	int cost = 0;
+	int res = 0;
+
+	for (Prodaza *temp = prod.head; temp != NULL; temp = temp->next) {
+		if ((isStartDate(dateStart, temp->D_pradaza)) && (isEndDate(dateEnd, temp->D_pradaza))) {
+			for (Tovar *temp2 = tov.head; temp2 != NULL; temp2 = temp2->next) {
+				if (temp->ID_tovar == temp2->ID_tovar) {
+					cost = temp2->Cost;
+					break;
+				}
+			}
+			res += cost * temp->Kolvo;
+		}
+	}
+	return res;
+}
+
+int List::countProdPer(Date dateStart, Date dateEnd) {
+	int res = 0;
+
+	for (Prodaza *temp = prod.head; temp != NULL; temp = temp->next) {
+		if ((isStartDate(dateStart, temp->D_pradaza)) && (isEndDate(dateEnd, temp->D_pradaza))) {
+			res +=  temp->Kolvo;
+		}
+	}
+	return res;
+}
+
+void List::summProdCat(Date dateStart, Date dateEnd) {
+	int cost, kolvo, sum; 
+	cout << "-----------------------------------------------------------------------" << endl;
+	cout.setf(ios::left, ios::adjustfield);
+	cout << setw(30) << " Name" << setw(20) << "| Sum" << endl;
+	cout << "-----------------------------------------------------------------------" << endl;
+	for (Category *temp3 = cat.head; temp3 != NULL; temp3 = temp3->next) {
+		sum = 0;
+		for (Tovar *temp2 = tov.head; temp2 != NULL; temp2 = temp2->next) {
+			if (temp2->ID_category == temp3->ID_category) {
+				kolvo = 0;
+				cost = temp2->Cost;
+				for (Prodaza *temp = prod.head; temp != NULL; temp = temp->next) {
+					if ((isStartDate(dateStart, temp->D_pradaza)) && (isEndDate(dateEnd, temp->D_pradaza))) {
+						if (temp->ID_tovar == temp2->ID_tovar ){
+							kolvo += temp->Kolvo;
+						}
+					}
+				}
+				sum += cost * kolvo;
+			}
+		}	
+		cout << " " << setw(29) << temp3->Name << "| " << setw(18) << sum << endl;
+	}
+	cout << "-----------------------------------------------------------------------" << endl;
+}
+
+int List::findCostTov(int IDt) {
+	int res = 0;
+	int kol = 0;
+	int cost;
+	for (Svaz *temp = svaz.head; temp != NULL; temp = temp->next){
+		if (IDt == temp->ID_tovar) {
+			kol = temp->Kolvo;
+			for (Kompl *temp2 = kom.head; temp2 != NULL; temp2 = temp2->next) {
+				if (temp->ID_kompl == temp2->ID_kompl) {
+					cost = temp2->Cost;
+					break;
+				}
+			}
+			res += kol * cost;
+		}
+	}
+	return res;
+}
+
+//void List::summProdCat2(Date dateStart, Date dateEnd) {
+//
+//	listCat *catSum = new listCat;
+//	catSum->head = NULL;
+//
+//	for (Prodaza *temp = prod.head; temp != NULL; temp = temp->next) {
+//		if ((isStartDate(dateStart, temp->D_pradaza)) && (isEndDate(dateEnd, temp->D_pradaza))) {
+//			for (Tovar *temp2 = tov.head; temp2 != NULL; temp2 = temp2->next) {
+//				if (temp->ID_tovar == temp2->ID_tovar) {
+//
+//					for (Category *temp3 = cat.head; temp3 != NULL; temp3 = temp3->next) {
+//						if (temp2->ID_category == temp3->ID_category) {
+//
+//							if (catSum->head == NULL) {
+//								Category *tempCatSum = new Category;
+//								tempCatSum->ID_category = temp->Kolvo * temp2->Cost;
+//								tempCatSum->Name = temp3->Name;
+//								tempCatSum->next = catSum->head;
+//								catSum->head = tempCatSum;
+//								break;
+//							}
+//
+//							for (Category *temp4 = catSum->head; temp4 != NULL; ) { 
+//								if (temp4->Name == temp3->Name) {
+//									temp4->ID_category += temp->Kolvo * temp2->Cost;
+//									break;
+//								} else {
+//									Category *tempCatSum = new Category;
+//									tempCatSum->ID_category = temp->Kolvo * temp2->Cost;
+//									tempCatSum->Name = temp3->Name;
+//									tempCatSum->next = catSum->head;
+//									catSum->head = tempCatSum;
+//									break;
+//								}
+//							}
+//						}
+//					}
+//				}
+//			}
+//		}
+//	}
+//	cout << "Print Cat sum:" << endl << endl;
+//	cout << "-----------------------------------------------------------------------" << endl;
+//	cout.setf(ios::left, ios::adjustfield);
+//	cout << setw(30) << " Name" << setw(20) << "| Sum" << endl;
+//	cout << "-----------------------------------------------------------------------" << endl;
+//	for (Category *temp = catSum->head; temp != NULL; temp = temp->next) {
+//		cout << " " << setw(29) << temp->Name << "| " << setw(18) << temp->ID_category << endl;
+//	}
+//	cout << "-----------------------------------------------------------------------" << endl;
+//}
+
+void List::countProdCat(Date dateStart, Date dateEnd){
+int kolvo; 
+	cout << "-----------------------------------------------------------------------" << endl;
+	cout.setf(ios::left, ios::adjustfield);
+	cout << setw(30) << " Name" << setw(20) << "| Sum" << endl;
+	cout << "-----------------------------------------------------------------------" << endl;
+	for (Category *temp3 = cat.head; temp3 != NULL; temp3 = temp3->next) {
+		kolvo = 0;
+		for (Tovar *temp2 = tov.head; temp2 != NULL; temp2 = temp2->next) {
+			if (temp2->ID_category == temp3->ID_category) {
+				for (Prodaza *temp = prod.head; temp != NULL; temp = temp->next) {
+					if ((isStartDate(dateStart, temp->D_pradaza)) && (isEndDate(dateEnd, temp->D_pradaza))) {
+						if (temp->ID_tovar == temp2->ID_tovar ){
+							kolvo += temp->Kolvo;
+						}
+					}
+				}
+			}
+		}	
+		cout << " " << setw(29) << temp3->Name << "| " << setw(18) << kolvo << endl;
+	}
+	cout << "-----------------------------------------------------------------------" << endl;
+}

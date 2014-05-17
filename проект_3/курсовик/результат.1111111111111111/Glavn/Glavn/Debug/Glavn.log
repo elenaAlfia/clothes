@@ -1,0 +1,34 @@
+﻿Построение начато 11.05.2013 20:42:36.
+     1>Проект "C:\Users\silvestor\Desktop\курсовик\kursovik\Glavn\Glavn\Glavn.vcxproj" в узле 2 (целевые объекты build).
+     1>InitializeBuildStatus:
+         Обращение к "Debug\Glavn.unsuccessfulbuild".
+       GenerateTargetFrameworkMonikerAttribute:
+       Целевой объект "GenerateTargetFrameworkMonikerAttribute" пропускается, так как все выходные файлы актуальны по отношению к входным.
+       ClCompile:
+         Для всех выходных данных обновления не требуется.
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\Glavn.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt Glavn.cpp /clr:nostdlib 
+         Glavn.cpp
+     1>Glavn.cpp(15): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "dateStart"
+     1>Glavn.cpp(15): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+     1>Glavn.cpp(15): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+     1>Glavn.cpp(16): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "dateEnd"
+     1>Glavn.cpp(16): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+     1>Glavn.cpp(16): error C2086: int Date: переопределение
+                 Glavn.cpp(15): см. объявление "Date"
+     1>Glavn.cpp(16): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+     1>Glavn.cpp(17): error C2143: синтаксическая ошибка: отсутствие ";" перед "*"
+     1>Glavn.cpp(17): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+     1>Glavn.cpp(17): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+     1>Glavn.cpp(59): error C2065: List: необъявленный идентификатор
+     1>Glavn.cpp(59): error C2065: st: необъявленный идентификатор
+     1>Glavn.cpp(60): error C2448: menu: вероятно, инициализатор, использующий стиль функции, является определением функции
+     1>Glavn.cpp(1294): error C2065: List: необъявленный идентификатор
+     1>Glavn.cpp(1294): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "st"
+     1>Glavn.cpp(1294): error C2065: st: необъявленный идентификатор
+     1>Glavn.cpp(1299): error C2065: st: необъявленный идентификатор
+     1>Glavn.cpp(1299): error C3861: menu: идентификатор не найден
+     1>Построение проекта "C:\Users\silvestor\Desktop\курсовик\kursovik\Glavn\Glavn\Glavn.vcxproj" завершено (целевые объекты build) с ошибкой.
+
+СБОЙ построения.
+
+Затраченное время: 00:00:00.71
